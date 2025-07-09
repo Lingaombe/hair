@@ -1,0 +1,23 @@
+h1{
+    text-align: center;
+}
+button{
+    padding: 10px;
+    background-color: plum;
+}
+.main{
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+}
+.sub1{
+
+}
+.desc{
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+}
+@media (max-width: 500px) {
+    .main{
+        grid-template-columns: repeat(1, 1fr);
+    }
+}
