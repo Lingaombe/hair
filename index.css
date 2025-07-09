@@ -10,7 +10,7 @@ button{
     grid-template-columns: repeat(2, 1fr);
 }
 .sub1{
-
+    color: red;
 }
 .desc{
     display: grid;
