@@ -2,26 +2,81 @@
 
 body{
     text-align: center;
-    font-family:  'Fredoka', "Open Sans";
+    font-family: 'Fredoka', "Open Sans";
+}
+h1{
+  font-size: 3rem;
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: colour 5s ease infinite;
+}
+@keyframes colour{
+  0%{
+    background: linear-gradient(45deg, #0e51fa, #8092f9);
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+  20%{
+    background: linear-gradient(45deg, #8092f9, #2260ff);
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+  40%{
+    background: linear-gradient(45deg, #2260ff, #b5c9fc);
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+  60%{
+    background: linear-gradient(45deg, #b5c9fc, #1a5afc);
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+  80%{
+    background: linear-gradient(45deg, #1a5afc, #8092f9);
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+  100%{
+    background: linear-gradient(90deg, #8092f9, #0e51fa);
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+}
+.hero{
+  font-size: 1.2rem;
 }
 .main{
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   gap: 10px;
-}
-.sub1{
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
-}
-.sub2{
   margin: auto;
+  padding: 10px;
+  height: 50%;
+  border-radius: 10px;
+  border: 1px solid #2260ff;
+  width: 70vw;
+}
+.sub1, .sub2{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+a{
+  text-decoration: none;
+  color: #2260ff;
+  font-style: oblique;
 }
 .sub2 img{
   border-radius: 8px;
-  max-height: 70vh;
+  width: 80%;
 }
 .desc{
   display: grid;
@@ -32,19 +87,15 @@ body{
     .main{
       grid-template-columns: repeat(1, 1fr);
     }
-    .sub2 img{
-      max-height: 50vh;
-    }
   }
 .afro{
     height: 40px;
 }
 .box1, .box2{
-    border: #2260ff 1px solid;
-    border-radius: 8px;
-    width: 150px;
-    padding: 10px;
-    text-align: center;
+  padding: 10px;
+  text-align: center;
+  justify-content: center;
+  align-items: center;
 }
 
 /* From Uiverse.io by Yaya12085 with a few edits*/ 
