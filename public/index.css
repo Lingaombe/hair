@@ -60,8 +60,8 @@ h1{
   padding: 10px;
   height: 50%;
   border-radius: 10px;
-  border: 1px solid #2260ff;
   width: 70vw;
+  box-shadow: #2260ff 0px 5px 15px;
 }
 .sub1, .sub2{
   display: flex;
@@ -77,6 +77,12 @@ a{
 .sub2 img{
   border-radius: 8px;
   width: 80%;
+  position: relative;
+}
+#link{
+  position: fixed;
+  top: 1;
+  right: 1;
 }
 .desc{
   display: grid;
@@ -235,3 +241,4 @@ button:active{
   background-color: #0e51fa;
   transform: scale(0.8);
 }
+

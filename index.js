@@ -1,75 +1,47 @@
-/* import dotenv from "dotenv";
+import express from 'express';
+import mysql from 'mysql2';
+import { randomInt } from 'crypto';
 
+const app = express();
+const port = 5500;
+
+app.use(express.json());
+app.use(express.static('public'));
+
+import dotenv from "dotenv";
 dotenv.config();
 
-const token = process.env.Pinterest_Token; */
+const pool = mysql.createPool({
+  host: process.env.DB_HOST,
+  user: process.env.DB_USER,
+  password: process.env.DB_PASS,
+  database: process.env.DB_NAME,
+  waitForConnections: true,
+  connectionLimit: 10,
+  queueLimit: 0
+}).promise();
 
-import mysql2 from 'mysql2';
 
-const connection = mysql2.createConnection({
-  host: 'localhost',     
-  user: 'root',          
-  password: 'Lingaombe@2001',          
-  database: 'HairStyles'       
-});
+app.post('/pickHair', async (req, res) => {
+  const { length, state } = req.body;
 
-connection.connect(error => {
-  if (error) {
-    console.error('Error connecting to the database:', error);
-    return;
+  try {
+    const [rows] = await pool.query(
+      'SELECT styleLink FROM Styles WHERE StyleLength = ? AND styleState = ?',
+      [length, state]
+    );
+
+    if (rows.length === 0) return res.json({ link: null });
+
+    const randomIndex = randomInt(rows.length);
+    const link = rows[randomIndex].styleLink;
+
+    res.json({ link });
+  } catch (err) {
+    res.status(500).send(err);
   }
-  console.log('Connected to the database');
 });
 
-const link = document.createElement('a'); 
-     
-link.textContent = 'Pin Link';      
-link.target = '_blank';  
-const target = document.getElementById('hair');
-
-const button = document.getElementById("generate");
-
-button.onclick = function(){
-    document.body.style.color = 'red';
-}
-
-function Generate(){
-    const lengthRadio = document.querySelector('input[name="length"]:checked');
-    const stateRadio = document.querySelector('input[name="state"]:checked');
-    const lengthValue = lengthRadio ? lengthRadio.value : null;
-    const stateValue = stateRadio ? stateRadio.value : null;
-
-    // pickHair(lengthValue, stateValue)
-
-    if (!lengthValue || !stateValue){
-        window.alert("pick a struggle")
-    }
-    else{
-        console.log(lengthValue);
-        console.log(stateValue);
-        target.parentNode.insertBefore(link, target);         
-    }
-}
-
-function pickHair(length, state){
-
-    connection.query('SELECT styleLink FROM Styles', (error, results) => {
-    if (error) {
-        console.error('Error executing query:', error);
-        return;
-    }
-    console.log('Query results:', results);
-    });
-
-    link.href = {};   
-    target.src = {};
-
-    connection.end();
-}
-
-//process which radio set is picked x
-//define functions for each set pinterest API get board and randomly select pin
-//onclick call req function
-//add link to pin ref pinterest
-//world economic ford report
-//playfire san serif (profesh)
+app.listen(port, () => {
+  console.log(`Server running at http://localhost:${port}`);
+});

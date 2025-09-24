@@ -13,7 +13,7 @@
     <h1>Pick Ya Fro, Sis</h1>
     <p class="hero">Your vibe. Your coils. Your Crown</p>
     <div class="main">
-        <div class="sub1">
+        <form class="sub1" method="POST">
             <div class="desc">
                 <div class="box1">
                     <p>Clock them inches gurl!</p>
@@ -89,21 +89,54 @@
                     </div>
                 </div>
             </div><br>
-            <button onclick="Generate()">
+            <button type="submit">
                 Generate hairstyle
             </button>
-        </div>
+        </form>
         <div class="sub2">
             <img src="/assets/hair.gif" alt="hairstyle" id="hair"/>
+            <a href="" id="link"></a>
         </div>
     </div>
 </body>
-<script src="index.js"></script>
-</html>
+<script>
+    
+    const form = document.querySelector("form");
+    const pinLink = document.getElementById('link'); 
+    const hairstyleImg = document.getElementById('hair');
 
-<!--
-    need generate button
-    need hairstyle section
-    need hair length
-    need hair status
--->
+    form.addEventListener("submit", (e) => {
+      e.preventDefault()
+
+      const lengthRadio = document.querySelector('input[name="length"]:checked');
+      const stateRadio = document.querySelector('input[name="state"]:checked');
+      const length = lengthRadio ? lengthRadio.value : null;
+      const state = stateRadio ? stateRadio.value : null;
+
+      if (!length || !state){
+        window.alert("pick a struggle")
+      }
+      else {
+        console.log(state, length)
+        fetch('pickHair', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ length, state })
+        })
+        .then(res => res.json())
+        .then(data => {
+            console.log("are you there?")
+            if (data.link) {
+                hairstyleImg.src = "/assets/here.png";
+                pinLink.href = data.link;  
+                pinLink.textContent = 'Hairsytle Link';      
+                pinLink.target = '_blank';    
+            } else {
+                hairstyleImg.src = '/assets/hair.gif';
+                alert('No matching hairstyles found!');
+            }
+        });
+        }}
+    );
+</script>
+</html>
