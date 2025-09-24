@@ -13,8 +13,8 @@
 
 * HTML5
 * CSS3
-* JavaScript (ES6)
-* Pinterest API (https://developers.pinterest.com/)
+* Node.js
+* MySQL 
 * Git for version control
 * Host on Netlify or Vercel
 
@@ -27,13 +27,7 @@ git clone https://github.com/yourusername/hair.git
 cd hair
 ```
 
-### 2. Add API Key
-
-const PINTEREST_ACCESS_TOKEN = 'your_access_token_here';
-
-Make sure to **exclude** this file from version control (`.gitignore` it).
-
-### 3. Open in browser
+### 2. Open in browser
 
 Just open `index.html` in any browser, or use a live server.
 
