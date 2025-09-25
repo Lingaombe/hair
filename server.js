@@ -3,7 +3,7 @@ import mysql from 'mysql2';
 import { randomInt } from 'crypto';
 
 const app = express();
-const port = 5500;
+const port = process.env.DB_PORT;
 
 app.use(express.json());
 app.use(express.static('public'));
@@ -16,6 +16,7 @@ const pool = mysql.createPool({
   user: process.env.DB_USER,
   password: process.env.DB_PASS,
   database: process.env.DB_NAME,
+  port: process.env.DB_PORT,
   waitForConnections: true,
   connectionLimit: 10,
   queueLimit: 0
@@ -27,7 +28,7 @@ app.post('/pickHair', async (req, res) => {
 
   try {
     const [rows] = await pool.query(
-      'SELECT styleID FROM Styles WHERE styleLength = ? AND styleState = ?',
+      'SELECT styleID FROM HairStyles WHERE styleLength = ? AND styleState = ?',
       [length, state]
     );
 
