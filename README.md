@@ -16,7 +16,7 @@
 * Node.js
 * MySQL 
 * Git for version control
-* Host on Netlify or Vercel
+* Hosted on Railway
 
 ## 🚀 Getting Started
 
@@ -30,17 +30,6 @@ cd hair
 ### 2. Open in browser
 
 Just open `index.html` in any browser, or use a live server.
-
-## 📁 Folder Structure
-
-```
-hair/
-├── index.html       # Main page
-├── style.css        # Styling
-├── script.js        # Core logic
-├── config.js        # API key (excluded from repo)
-└── assets/          # Any local images/icons
-```
 
 ## 💡 How It Works
 
