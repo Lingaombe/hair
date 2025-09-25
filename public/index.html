@@ -115,6 +115,9 @@
 
     form.addEventListener("submit", (e) => {
       e.preventDefault()
+      
+      const frame = container.querySelector("iframe");
+      if (frame) frame.remove();
 
       const lengthRadio = document.querySelector('input[name="length"]:checked');
       const stateRadio = document.querySelector('input[name="state"]:checked');
