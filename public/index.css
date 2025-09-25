@@ -61,13 +61,15 @@ h1{
   height: 50%;
   border-radius: 10px;
   width: 70vw;
-  box-shadow: #2260ff 0px 5px 15px;
 }
 .sub1, .sub2{
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
+}
+.sub2{
+  position: relative;
 }
 a{
   text-decoration: none;
@@ -79,16 +81,12 @@ a{
   width: 80%;
   position: relative;
 }
-#link{
-  position: fixed;
-  top: 1;
-  right: 1;
-}
 .desc{
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   gap: 5px;
 }
+
 @media (orientation: portrait) {
     .main{
       grid-template-columns: repeat(1, 1fr);
@@ -242,3 +240,56 @@ button:active{
   transform: scale(0.8);
 }
 
+#loading {
+ --speed-of-animation: 0.9s;
+ --gap: 6px;
+ --first-color: #4c86f9;
+ --second-color: #49a84c;
+ --third-color: #f6bb02;
+ --fourth-color: #f6bb02;
+ --fifth-color: #2196f3;
+ display: flex;
+ position: absolute;
+ justify-content: center;
+ align-items: center;
+ width: 100px;
+ gap: 6px;
+ height: 100px;
+}
+
+#loading span {
+ width: 4px;
+ height: 50px;
+ background: var(--first-color);
+ animation: scale var(--speed-of-animation) ease-in-out infinite;
+}
+
+#loading span:nth-child(2) {
+ background: var(--second-color);
+ animation-delay: -0.8s;
+}
+
+#loading span:nth-child(3) {
+ background: var(--third-color);
+ animation-delay: -0.7s;
+}
+
+#loading span:nth-child(4) {
+ background: var(--fourth-color);
+ animation-delay: -0.6s;
+}
+
+#loading span:nth-child(5) {
+ background: var(--fifth-color);
+ animation-delay: -0.5s;
+}
+
+@keyframes scale {
+ 0%, 40%, 100% {
+  transform: scaleY(0.05);
+ }
+
+ 20% {
+  transform: scaleY(1);
+ }
+}

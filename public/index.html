@@ -94,8 +94,14 @@
             </button>
         </form>
         <div class="sub2">
-            <img src="/assets/hair.gif" alt="hairstyle" id="hair"/>
-            <a href="" id="link"></a>
+            <img src="/assets/hair.gif" id="hair">
+            <div id="loading" style="display:none;">
+                <span></span>
+                <span></span>
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
         </div>
     </div>
 </body>
@@ -104,6 +110,8 @@
     const form = document.querySelector("form");
     const pinLink = document.getElementById('link'); 
     const hairstyleImg = document.getElementById('hair');
+    const container = document.getElementsByClassName("sub2")[0];
+    const loading = document.getElementById("loading");
 
     form.addEventListener("submit", (e) => {
       e.preventDefault()
@@ -112,6 +120,9 @@
       const stateRadio = document.querySelector('input[name="state"]:checked');
       const length = lengthRadio ? lengthRadio.value : null;
       const state = stateRadio ? stateRadio.value : null;
+
+      hairstyleImg.style.display = "none";
+      loading.style.display = "flex";
 
       if (!length || !state){
         window.alert("pick a struggle")
@@ -126,13 +137,26 @@
         .then(res => res.json())
         .then(data => {
             console.log("are you there?")
-            if (data.link) {
-                hairstyleImg.src = "/assets/here.png";
-                pinLink.href = data.link;  
-                pinLink.textContent = 'Hairsytle Link';      
-                pinLink.target = '_blank';    
+            if (data.styleID) {
+                const iframe = document.createElement("iframe");
+                iframe.width = "300";   
+                iframe.height = "500";  
+                iframe.style.border = 'none';
+                iframe.style.overflow = 'hidden';
+                iframe.scrolling="no";
+                iframe.setAttribute('allowtransparency', 'true');
+
+                hairstyleImg.remove();
+                iframe.src = `https://assets.pinterest.com/ext/embed.html?id=${data.styleID}`
+
+                container.appendChild(iframe);
+
+                iframe.onload = () => {
+                    loading.style.display = "none";
+                };
             } else {
-                hairstyleImg.src = '/assets/hair.gif';
+                hairstyleImg.style.display = "block";
+                loading.style.display = "none";
                 alert('No matching hairstyles found!');
             }
         });
@@ -140,3 +164,16 @@
     );
 </script>
 </html>
+
+<!-- INSERT INTO Styles VALUES ("985231164797811", "sl", "braids"),
+("124623114682524931", "sl", "braids"),
+("5277724559244087", "sl", "braids"),
+("1196337404751451", "sl", "braids"),
+("117656609010405972", "sl", "braids"),
+("844493675364139", "sl", "braids"),
+("8022105580080236", "sl", "braids"),
+("435793701462209862", "sl", "braids"),
+("68747532689", "sl", "braids"),
+("336925615894780542", "sl", "braids"),
+("1759287347951551", "sl", "braids"),
+("985231163203009", "sl", "braids"); -->

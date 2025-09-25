@@ -27,16 +27,16 @@ app.post('/pickHair', async (req, res) => {
 
   try {
     const [rows] = await pool.query(
-      'SELECT styleLink FROM Styles WHERE StyleLength = ? AND styleState = ?',
+      'SELECT styleID FROM Styles WHERE styleLength = ? AND styleState = ?',
       [length, state]
     );
 
-    if (rows.length === 0) return res.json({ link: null });
+    if (rows.length === 0) return res.json({ styleID: null });
 
     const randomIndex = randomInt(rows.length);
-    const link = rows[randomIndex].styleLink;
+    const styleID = rows[randomIndex].styleID;
 
-    res.json({ link });
+    res.json({ styleID });
   } catch (err) {
     res.status(500).send(err);
   }
