@@ -6,14 +6,13 @@
 
 * 🎯 Pick hair type or length
 * 🎲 Get random hairstyle suggestions
-* 📸 Images pulled dynamically via Pinterest API
-* ⚡ No frameworks – just HTML, CSS & JavaScript
+* 📸 Images pulled dynamically from Pinterest
 
 ## 🛠 Tech Stack
 
 * HTML5
 * CSS3
-* Node.js
+* Express.js
 * MySQL 
 * Git for version control
 * Hosted on Railway
