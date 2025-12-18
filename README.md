@@ -1,6 +1,6 @@
 # ✂️ Hairstyle Picker App
 
-**Pick Ya Fro, Sis** – A lightweight web app that helps you find hairstyle inspiration based on your hair length or type. Powered by plain HTML, CSS, and JavaScript. No frameworks, no fuss.
+**Pick Ya Fro, Sis** is a lightweight web app that helps you find hairstyle inspiration based on your hair length or type. Powered by plain HTML, CSS, and JavaScript. No frameworks, no fuss.
 
 ## 🔥 Features
 
